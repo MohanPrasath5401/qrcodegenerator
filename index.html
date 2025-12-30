@@ -30,14 +30,21 @@
             padding: 12px 24px; 
             font-size: 16px; 
             cursor: pointer;
+            margin: 10px;
         }
         #qrcode { 
-            margin: 40px auto;   /* This centers it horizontally */
-            display: inline-block; /* Important for proper centering */
+            margin: 40px auto;   /* Centers horizontally */
+            display: inline-block; /* For proper centering */
             padding: 20px;
             background: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        #downloadBtn {
+            display: none; /* Hidden until QR is generated */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
         }
     </style>
 </head>
@@ -47,21 +54,35 @@
     <input type="text" id="urlInput" placeholder="https://example.com">
     <button onclick="generateQR()">Generate QR Code</button>
     <div id="qrcode"></div>
+    <button id="downloadBtn" onclick="downloadQR()">Download QR Code</button>
 
     <script>
+        let qrCodeInstance; // To store the QR code object
+
         function generateQR() {
             const url = document.getElementById('urlInput').value;
             if (url) {
                 document.getElementById('qrcode').innerHTML = ''; // Clear previous QR
-                new QRCode(document.getElementById('qrcode'), {
+                qrCodeInstance = new QRCode(document.getElementById('qrcode'), {
                     text: url,
                     width: 256,
                     height: 256,
                     colorDark: "#000000",
                     colorLight: "#ffffff"
                 });
+                document.getElementById('downloadBtn').style.display = 'inline-block'; // Show download button
             } else {
                 alert('Please enter a URL!');
+            }
+        }
+
+        function downloadQR() {
+            if (qrCodeInstance) {
+                const canvas = document.getElementById('qrcode').querySelector('canvas'); // Get the canvas
+                const link = document.createElement('a'); // Create a temporary link
+                link.href = canvas.toDataURL('image/png'); // Convert canvas to PNG data URL
+                link.download = 'qr_code.png'; // Set filename
+                link.click(); // Trigger download
             }
         }
     </script>
