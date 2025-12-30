@@ -3,13 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>Simple QR Code Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        input { padding: 10px; width: 300px; }
-        button { padding: 10px 20px; margin: 10px; }
-        #qrcode { margin: 20px auto; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 40px auto; 
+            max-width: 600px; 
+            padding: 20px; 
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 30px;
+            color: #555;
+        }
+        input { 
+            padding: 12px; 
+            width: 320px; 
+            font-size: 16px; 
+            margin-bottom: 20px;
+        }
+        button { 
+            padding: 12px 24px; 
+            font-size: 16px; 
+            cursor: pointer;
+        }
+        #qrcode { 
+            margin: 40px auto;   /* This centers it horizontally */
+            display: inline-block; /* Important for proper centering */
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
